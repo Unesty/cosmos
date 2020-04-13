@@ -9,7 +9,7 @@ public class Shield : Item
         base.OnTriggerEnter2D(collision);
 
         if (collision.gameObject.tag == "EndSpace")
-            DeathObject();      
+            DeathObject(GetComponent<Item>());      
     }
 
     protected override void InteractionWithPlayer(GameObject collision)
@@ -27,6 +27,6 @@ public class Shield : Item
 
         yield return new WaitForSeconds(1);
 
-        DeathObject();
+        DeathObject(GetComponent<Item>());
     } 
 }

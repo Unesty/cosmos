@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Meteorite : Item
 {
+    // Варианты изображения метеорита, выбираются при Instantiate
     [SerializeField] private Sprite[] allSprites;
 
     protected override void Start()
@@ -26,7 +27,7 @@ public class Meteorite : Item
         base.OnTriggerEnter2D(collision);
 
         if (collision.gameObject.tag == "EndSpace")
-            DeathObject();
+            DeathObject(GetComponent<Item>());
     }
 
     protected override void InteractionWithPlayer(GameObject collision)
@@ -35,7 +36,7 @@ public class Meteorite : Item
 
         collision.gameObject.GetComponent<PlayerController>().Death();
 
-        DeathObject();
+        DeathObject(GetComponent<Item>());
     }
 
 }

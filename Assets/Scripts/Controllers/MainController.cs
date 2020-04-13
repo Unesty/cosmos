@@ -10,8 +10,10 @@ public class MainController : MonoBehaviour
 
     [SerializeField] private PlayerController playerCon;
 
+    // Идёт ли сейчас игра, перенная паузы
     public bool gameActive = true;
 
+    // Пауза в игре, при смерти или включении опций
     public void GameDeActivate()
     {
         gameActive = false;
@@ -19,7 +21,7 @@ public class MainController : MonoBehaviour
         spawnCon.StopGame();
         uiCon.EndGame();
     }
-
+   
     public void RestartGame()
     {
         SceneManager.LoadScene(0);

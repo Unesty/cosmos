@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Star : Item
 {
+    // Баллы, которые даются за звезду
     public PointController pointCon;    
 
     // Кол-во очков, получаемое за эту звезду
@@ -14,9 +15,9 @@ public class Star : Item
         base.OnTriggerEnter2D(collision);
 
         if (collision.gameObject.tag == "EndSpace")
-            DeathObject();
+            DeathObject(GetComponent<Item>());
     }
-
+    
     protected override void InteractionWithPlayer(GameObject collision)
     {
         base.InteractionWithPlayer(collision);
@@ -26,13 +27,14 @@ public class Star : Item
         StartCoroutine(CoDeathObject());
     }
 
+    // Воспроизводится звук, после его окончания, объект удаляется
     private IEnumerator CoDeathObject()
     {
         audioSource.Play();
 
         yield return new WaitForSeconds(1);
 
-        DeathObject();
+        DeathObject(GetComponent<Item>());
     }
 
 }

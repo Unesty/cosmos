@@ -10,13 +10,18 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private Meteorite meteoritePrefab;
     [SerializeField] private Shield shieldPrefab;
 
+    // Позиции в которых спамятся items
     [SerializeField] private GameObject[] startPositions;
 
+    // Все items, которые заспамились и ещё не уничтожены
     private List<Item> allSpawnObjects;
 
+    // Пауза в игре
     private bool stopGame = false;
 
+    // Время между спаунами
     private float timeStarSpawn = 1.5f;
+    // Время до следующего спауна
     private float timeStarWait = 0;
 
     private float timeMeteoriteSpawn = 2;
@@ -25,6 +30,7 @@ public class SpawnController : MonoBehaviour
     private float timeShieldSpawn = 5;
     private float timeShieldWait = 3;
 
+    // Можно ли спаунить на определённой линии
     private bool[] timeSpawnOnLine = new bool[]{false, false, false};
     
     private bool createItemNow;
@@ -114,6 +120,7 @@ public class SpawnController : MonoBehaviour
         createItemNow = false;
     }
 
+    // Проверка, на какой линии можно делать спаун item
     private int CheckStartPositions()
     {
         createItemNow = true;
@@ -129,6 +136,7 @@ public class SpawnController : MonoBehaviour
         return rnd;
     }
 
+    // Запрет на спаун на 1 секунду на линии текущего спауна
     private IEnumerator CoTimerSpawnOnLive(int numberLine)
     {
         timeSpawnOnLine[numberLine] = true;
@@ -138,6 +146,7 @@ public class SpawnController : MonoBehaviour
         timeSpawnOnLine[numberLine] = false;
     }
 
+    // Пауза игры
     public void StopGame()
     {
         stopGame = true;
@@ -148,8 +157,11 @@ public class SpawnController : MonoBehaviour
         }
     }
 
+    // Уничтожение item
     public void DeleteItem(Item item)
     {
         allSpawnObjects.Remove(item);
+
+        Destroy(item.gameObject);
     }
 }

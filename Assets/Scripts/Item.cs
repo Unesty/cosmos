@@ -34,6 +34,7 @@ public class Item : MonoBehaviour
         }
     }
 
+    // При соприкосновении с Player, оключение спрайта и вызов взаимодействия
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -56,9 +57,9 @@ public class Item : MonoBehaviour
         canMove = move;
     }
 
-    protected virtual void DeathObject() 
+    protected virtual void DeathObject(Item item) 
     {
-        spawnCon.DeleteItem(GetComponent<Item>());
+        spawnCon.DeleteItem(item);
     }
 
 }
