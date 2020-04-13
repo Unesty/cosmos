@@ -9,6 +9,8 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private Star starPrefab;
     [SerializeField] private Meteorite meteoritePrefab;
     [SerializeField] private Shield shieldPrefab;
+    [SerializeField] private Balloon balloonPrefab;
+
 
     // Позиции в которых спамятся items
     [SerializeField] private GameObject[] startPositions;
@@ -30,7 +32,10 @@ public class SpawnController : MonoBehaviour
     private float timeShieldSpawn = 5;
     private float timeShieldWait = 3;
 
-    private float timeAnySpawn = 5;
+    private float timeBalloonSpawn = 6;
+    private float timeBalloonWait = 1;
+
+    private float timeAnySpawn = 6;
     private float timeAnyWait = 0;
 
     // Можно ли спаунить на определённой линии
@@ -67,6 +72,14 @@ public class SpawnController : MonoBehaviour
 
                 StartCoroutine(CreateShield());
             }
+
+            if (timeBalloonWait <= 0)
+            {
+                timeBalloonWait = timeBalloonSpawn;
+
+                StartCoroutine(CreateBalloon());
+            }
+
             if (timeAnyWait <= 0)
             {
                 timeAnyWait = timeAnySpawn;
@@ -136,6 +149,22 @@ public class SpawnController : MonoBehaviour
         newShield.spawnCon = GetComponent<SpawnController>();
 
         allSpawnObjects.Add(newShield);
+
+        createItemNow = false;
+    }
+
+    // Создание Балона
+    private IEnumerator CreateBalloon()
+    {
+        if (createItemNow)
+            yield return new WaitForSeconds(.2f);
+
+        int rnd = CheckStartPositions();
+
+        Balloon newBalloon = Instantiate(balloonPrefab, startPositions[rnd].transform.position, Quaternion.identity);
+        newBalloon.spawnCon = GetComponent<SpawnController>();
+
+        allSpawnObjects.Add(newBalloon);
 
         createItemNow = false;
     }
