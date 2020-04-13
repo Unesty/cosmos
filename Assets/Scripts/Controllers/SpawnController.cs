@@ -30,6 +30,9 @@ public class SpawnController : MonoBehaviour
     private float timeShieldSpawn = 5;
     private float timeShieldWait = 3;
 
+    private float timeAnySpawn = 5;
+    private float timeAnyWait = 0;
+
     // Можно ли спаунить на определённой линии
     private bool[] timeSpawnOnLine = new bool[]{false, false, false};
     
@@ -64,10 +67,27 @@ public class SpawnController : MonoBehaviour
 
                 StartCoroutine(CreateShield());
             }
+            if (timeAnyWait <= 0)
+            {
+                timeAnyWait = timeAnySpawn;
+                int rnd = (int)Random.Range(0,4);
+                switch(rnd){
+                case 0:
+                    StartCoroutine(CreateMeteorite());
+                    break;
+                case 1:
+                    StartCoroutine(CreateStar());
+                    break;
+                case 2:
+                    StartCoroutine(CreateShield());
+                    break;
+                }
+            }
 
             timeStarWait -= Time.deltaTime;
             timeMeteoriteWait -= Time.deltaTime;
             timeShieldWait -= Time.deltaTime;
+            timeAnyWait -= Time.deltaTime;
         }
     }
 
@@ -126,7 +146,7 @@ public class SpawnController : MonoBehaviour
         createItemNow = true;
 
         int rnd = Random.Range(0, startPositions.Length);
-        while (timeSpawnOnLine[rnd])
+        if (timeSpawnOnLine[rnd]) //while may cause freeze
         {
             rnd = Random.Range(0, startPositions.Length);
         }
