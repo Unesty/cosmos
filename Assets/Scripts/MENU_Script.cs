@@ -25,6 +25,30 @@ public class MENU_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+        //выход из новой игры
+        if (Level_panel && Input.GetKeyDown(KeyCode.Escape))
+        {
+            New_Game_button(false);
+        }
+    }
+
+    //НОВАЯ ИГРА
+    public void New_Game_button(bool Sostoyanie)
+    {
+        if (Sostoyanie)
+        {
+            Level_panel.SetActive(true);
+            Fon_Panel.SetActive(false);
+            Button_Menu_Panel.SetActive(false);
+        }
+        else
+        {
+            Level_panel.SetActive(false);
+            Fon_Panel.SetActive(true);
+            Button_Menu_Panel.SetActive(true);
+        }
         
     }
 

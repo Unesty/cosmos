@@ -1122,7 +1122,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 761744674}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16448336}
+        m_MethodName: New_Game_button
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &761744674
 MonoBehaviour:
   m_ObjectHideFlags: 0
