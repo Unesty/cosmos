@@ -844,19 +844,19 @@ MonoBehaviour:
   shieldPrefab: {fileID: 3853229135607418033, guid: ef58bb346d8fab441b9953511a929d3b,
     type: 3}
   balloonPrefab: {fileID: -609286213930449511, guid: 5cdb671a17e46854aba96cb6f4b9c88d,
+    type: 3}
   spittlePrefab: {fileID: -5302263225928739907, guid: f6e5121ad6fa6b84b965372fcddf594e,
     type: 3}
   startPositions:
   - {fileID: 1606222975}
   - {fileID: 123169029}
   - {fileID: 121904783}
-  spawnRateDiv: 1000
-  itemsPerMinute: 40
+  itemsPerMinute: 45
   starChance: {x: 0, y: 0.25}
   meteoriteChance: {x: 0.25, y: 0.55}
-  shieldChance: {x: 0.55, y: 0.65}
-  balloonChance: {x: 0.65, y: 0.75}
-  anyChance: {x: 0.75, y: 0.85}
+  shieldChance: {x: 0.55, y: 0.6}
+  balloonChance: {x: 0.6, y: 0.7}
+  anyChance: {x: 0.7, y: 0.75}
 --- !u!1 &496175506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1736,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.14, y: 3.47}
+  m_Size: {x: 4.57, y: 1.735}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

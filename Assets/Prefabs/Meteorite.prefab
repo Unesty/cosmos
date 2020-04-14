@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aff7b3a0f8ea74abfd9691751d6bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnCon: {fileID: 0}
   speed: 3
   allSprites:
   - {fileID: 21300000, guid: 961a339dbd126cb4db79d72360789142, type: 3}

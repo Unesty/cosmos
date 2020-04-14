@@ -51,8 +51,8 @@ public class SpawnController : MonoBehaviour
 
     private bool createItemNow;
 
-    private float lifetime = 0;
-    public float spawnRateDiv = 1000;
+    //private float lifetime = 0;
+    //public float spawnRateDiv = 1000;
 
     public float itemsPerMinute = 100;
     public Vector2 starChance;
@@ -64,7 +64,7 @@ public class SpawnController : MonoBehaviour
     private void Awake()
     {
         allSpawnObjects = new List<Item>();
-        lifetime = 0;
+        //lifetime = 0;
     }
 
     private void Update()
