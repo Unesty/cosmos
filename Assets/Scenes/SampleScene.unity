@@ -818,6 +818,12 @@ MonoBehaviour:
   - {fileID: 123169029}
   - {fileID: 121904783}
   spawnRateDiv: 1000
+  itemsPerMinute: 40
+  starChance: {x: 0, y: 0.25}
+  meteoriteChance: {x: 0.25, y: 0.55}
+  shieldChance: {x: 0.55, y: 0.65}
+  balloonChance: {x: 0.65, y: 0.75}
+  anyChance: {x: 0.75, y: 0.85}
 --- !u!1 &496175506
 GameObject:
   m_ObjectHideFlags: 0
