@@ -5,10 +5,13 @@ using UnityEngine;
 public class SpawnController : MonoBehaviour
 {
     [SerializeField] private PointController pointCon;
+    [SerializeField] private EnemyController enemyCon;
+    [SerializeField] private PlayerController playerCon;
 
     [SerializeField] private Star starPrefab;
     [SerializeField] private Meteorite meteoritePrefab;
     [SerializeField] private Shield shieldPrefab;
+    [SerializeField] private Spittle spittlePrefab;
 
     // Позиции в которых спамятся items
     [SerializeField] private GameObject[] startPositions;
@@ -29,6 +32,11 @@ public class SpawnController : MonoBehaviour
 
     private float timeShieldSpawn = 5;
     private float timeShieldWait = 3;
+
+    // Время между спаунами плевка
+    private float timeSpawnSpittle = 5;
+    // Время до спауна следующего плевка
+    private float timeSpawnSpittleWait = 5;
 
     // Можно ли спаунить на определённой линии
     private bool[] timeSpawnOnLine = new bool[]{false, false, false};
@@ -65,10 +73,32 @@ public class SpawnController : MonoBehaviour
                 StartCoroutine(CreateShield());
             }
 
+            if(timeSpawnSpittleWait <= 0)
+            {
+                timeSpawnSpittleWait = timeSpawnSpittle;
+
+                enemyCon.MoveEnemyToPlayer(playerCon.ReturnXNowPlayerLine());
+            }
+
             timeStarWait -= Time.deltaTime;
             timeMeteoriteWait -= Time.deltaTime;
             timeShieldWait -= Time.deltaTime;
+            timeSpawnSpittleWait -= Time.deltaTime;
         }
+    }
+
+    public IEnumerator SpawnSpittle(Vector3 posSpawn)
+    {
+        Debug.Log("spittle");
+        if (createItemNow)
+            yield return new WaitForSeconds(.2f);
+        
+        Spittle newSpittle = Instantiate(spittlePrefab, posSpawn, Quaternion.identity);
+        newSpittle.spawnCon = GetComponent<SpawnController>();
+
+        allSpawnObjects.Add(newSpittle);
+
+        createItemNow = false;
     }
 
     private IEnumerator CreateMeteorite()
