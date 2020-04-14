@@ -32,6 +32,12 @@ public class MENU_Script : MonoBehaviour
         {
             New_Game_button(false);
         }
+
+        //отмена выхода из игры
+        if (Exit_Panel&&Input.GetKeyDown(KeyCode.Escape))
+        {
+            Exit_Panel_But(false);
+        }
     }
 
     //НОВАЯ ИГРА
@@ -55,6 +61,27 @@ public class MENU_Script : MonoBehaviour
     public void Load_level(int Num_Scene)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(Num_Scene);
+    }
+
+    // EXIT Панель
+    public void Exit_Panel_But(bool Control)
+    {
+        if (Control)
+        {
+            Button_Menu_Panel.SetActive(false);
+            Exit_Panel.SetActive(true);
+        }
+        else
+        {
+            Button_Menu_Panel.SetActive(true);
+            Exit_Panel.SetActive(false);
+        }
+    }
+
+    // кнопка подтверждения выхода (Yes)
+    public void Exit_Button()
+    {
+        Application.Quit();
     }
 
 
