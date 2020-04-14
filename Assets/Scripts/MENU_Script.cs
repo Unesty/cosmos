@@ -49,7 +49,12 @@ public class MENU_Script : MonoBehaviour
             Fon_Panel.SetActive(true);
             Button_Menu_Panel.SetActive(true);
         }
-        
+    }
+
+    //загрузка нужного уровня
+    public void Load_level(int Num_Scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(Num_Scene);
     }
 
 
