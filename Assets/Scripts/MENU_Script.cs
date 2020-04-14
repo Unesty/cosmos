@@ -38,6 +38,8 @@ public class MENU_Script : MonoBehaviour
         {
             Exit_Panel_But(false);
         }
+
+
     }
 
     //НОВАЯ ИГРА
@@ -84,6 +86,10 @@ public class MENU_Script : MonoBehaviour
         Application.Quit();
     }
 
-
+    //кнопка выхода в главное меню из загрузки меню
+    public void Back_to_menu_button()
+    {
+        New_Game_button(false);
+    }
 
 }
