@@ -43,44 +43,48 @@ public class SpawnController : MonoBehaviour
     
     private bool createItemNow;
 
+    private float lifetime = 0;
+    public float spawnRateDiv = 1000;
+
     private void Awake()
     {
         allSpawnObjects = new List<Item>();
+        lifetime = 0;
     }
 
     private void Update()
     {
         if (!stopGame)
         {
-            if (timeMeteoriteWait <= 0)
+            if (timeMeteoriteWait <= Random.Range(0f,lifetime/spawnRateDiv))
             {
                 timeMeteoriteWait = timeMeteoriteSpawn;
 
                 StartCoroutine(CreateMeteorite());
             }
 
-            if (timeStarWait <= 0)
+            if (timeStarWait <= Random.Range(0f,lifetime/spawnRateDiv))
             {
                 timeStarWait = timeStarSpawn;
 
                 StartCoroutine(CreateStar());
             }
 
-            if (timeShieldWait <= 0)
+            if (timeShieldWait <= Random.Range(0f,lifetime/spawnRateDiv))
             {
                 timeShieldWait = timeShieldSpawn;
 
                 StartCoroutine(CreateShield());
             }
 
-            if (timeBalloonWait <= 0)
+            if (timeBalloonWait <= Random.Range(0f,lifetime/spawnRateDiv))
             {
                 timeBalloonWait = timeBalloonSpawn;
 
                 StartCoroutine(CreateBalloon());
             }
 
-            if (timeAnyWait <= 0)
+            if (timeAnyWait <= Random.Range(0f,1f))
             {
                 timeAnyWait = timeAnySpawn;
                 int rnd = (int)Random.Range(0,4);
@@ -101,6 +105,7 @@ public class SpawnController : MonoBehaviour
             timeMeteoriteWait -= Time.deltaTime;
             timeShieldWait -= Time.deltaTime;
             timeAnyWait -= Time.deltaTime;
+            lifetime += Time.deltaTime;
         }
     }
 

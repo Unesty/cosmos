@@ -811,11 +811,13 @@ MonoBehaviour:
     type: 3}
   shieldPrefab: {fileID: 3853229135607418033, guid: ef58bb346d8fab441b9953511a929d3b,
     type: 3}
-  balloonPrefab: {fileID: 0}
+  balloonPrefab: {fileID: -609286213930449511, guid: 5cdb671a17e46854aba96cb6f4b9c88d,
+    type: 3}
   startPositions:
   - {fileID: 1606222975}
   - {fileID: 123169029}
   - {fileID: 121904783}
+  spawnRateDiv: 1000
 --- !u!1 &496175506
 GameObject:
   m_ObjectHideFlags: 0
