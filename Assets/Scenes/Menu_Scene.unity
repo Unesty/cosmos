@@ -230,10 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc7a126c5902394abebf06dcf74acc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fon_Panel: {fileID: 0}
-  Button_Menu_Panel: {fileID: 0}
-  Level_panel: {fileID: 0}
-  Exit_Panel: {fileID: 0}
+  bgPanel: {fileID: 577527487}
+  panelMainMenu: {fileID: 2095029821}
+  levelPanel: {fileID: 1486539323}
+  exitPanel: {fileID: 1700746128}
 --- !u!114 &16448337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 577527490}
   - component: {fileID: 577527489}
   m_Layer: 5
-  m_Name: Fon_Panel
+  m_Name: BG Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1647,12 +1647,12 @@ GameObject:
   - component: {fileID: 1486539326}
   - component: {fileID: 1486539325}
   m_Layer: 5
-  m_Name: LEVEL_Panel
+  m_Name: Level Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1486539324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2007,12 +2007,12 @@ GameObject:
   - component: {fileID: 1700746131}
   - component: {fileID: 1700746130}
   m_Layer: 5
-  m_Name: Exit_Panel
+  m_Name: Exit Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1700746129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2564,7 +2564,7 @@ GameObject:
   - component: {fileID: 2095029824}
   - component: {fileID: 2095029823}
   m_Layer: 5
-  m_Name: Button_Menu_Panel
+  m_Name: Panel main menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

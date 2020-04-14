@@ -342,6 +342,36 @@ Transform:
   m_Father: {fileID: 756082833}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &202839971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 202839972}
+  m_Layer: 0
+  m_Name: Position  spawn spittle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &202839972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202839971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11, y: 0.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1259054424}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &383843394
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointCon: {fileID: 1194799194}
+  enemyCon: {fileID: 1259054425}
+  playerCon: {fileID: 450115216}
   starPrefab: {fileID: 4757524259349190108, guid: 1c2e74da7b8c6384484489cfc5a87f2f,
     type: 3}
   meteoritePrefab: {fileID: 5915191423480630694, guid: c829c538e7db4464a8ca07afc5cf37a9,
@@ -812,6 +844,7 @@ MonoBehaviour:
   shieldPrefab: {fileID: 3853229135607418033, guid: ef58bb346d8fab441b9953511a929d3b,
     type: 3}
   balloonPrefab: {fileID: -609286213930449511, guid: 5cdb671a17e46854aba96cb6f4b9c88d,
+  spittlePrefab: {fileID: -5302263225928739907, guid: f6e5121ad6fa6b84b965372fcddf594e,
     type: 3}
   startPositions:
   - {fileID: 1606222975}
@@ -1651,13 +1684,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1259054424}
   - component: {fileID: 1259054423}
+  - component: {fileID: 1259054425}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1259054423
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1697,12 +1731,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5aaa355852a1bfa44aa26f55849f75c9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 845d6e4808720334c85092cdf4b9ca06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.46, y: 1.12}
+  m_Size: {x: 9.14, y: 3.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1716,12 +1750,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259054422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.51, z: 0}
+  m_LocalPosition: {x: 0, y: -4.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 202839972}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259054425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259054422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f6b4d798daccf478a564337b2c9276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnCon: {fileID: 477427290}
+  playerCon: {fileID: 450115216}
+  posSpawnInEnemy: {fileID: 202839972}
+  speedEnemy: 6
 --- !u!1 &1287097665
 GameObject:
   m_ObjectHideFlags: 0

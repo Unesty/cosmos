@@ -5,12 +5,15 @@ using UnityEngine;
 public class SpawnController : MonoBehaviour
 {
     [SerializeField] private PointController pointCon;
+    [SerializeField] private EnemyController enemyCon;
+    [SerializeField] private PlayerController playerCon;
 
     [SerializeField] private Star starPrefab;
     [SerializeField] private Meteorite meteoritePrefab;
     [SerializeField] private Shield shieldPrefab;
     [SerializeField] private Balloon balloonPrefab;
 
+    [SerializeField] private Spittle spittlePrefab;
 
     // Позиции в которых спамятся items
     [SerializeField] private GameObject[] startPositions;
@@ -37,6 +40,11 @@ public class SpawnController : MonoBehaviour
 
     private float timeAnySpawn = 6;
     private float timeAnyWait = 0;
+
+    // Время между спаунами плевка
+    private float timeSpawnSpittle = 5;
+    // Время до спауна следующего плевка
+    private float timeSpawnSpittleWait = 5;
 
     // Можно ли спаунить на определённой линии
     private bool[] timeSpawnOnLine = new bool[]{false, false, false};
@@ -107,7 +115,6 @@ public class SpawnController : MonoBehaviour
                     StartCoroutine(CreateShield());
                     break;
                 }
-            }
 
             timeStarWait -= Time.deltaTime;
             timeMeteoriteWait -= Time.deltaTime;
@@ -115,6 +122,13 @@ public class SpawnController : MonoBehaviour
             timeAnyWait -= Time.deltaTime;
             lifetime += Time.deltaTime;
             */
+            
+            if(timeSpawnSpittleWait <= 0)
+            {
+                timeSpawnSpittleWait = timeSpawnSpittle;
+
+                enemyCon.MoveEnemyToPlayer(playerCon.ReturnXNowPlayerLine());
+            }
             bool rndItem = Random.Range(0f,3600f/(float)itemsPerMinute)<1f;
             if(rndItem){
                 float rnd=Random.Range(0f,1f);
@@ -147,10 +161,27 @@ public class SpawnController : MonoBehaviour
                     }
                 }
             }
+            timeSpawnSpittleWait -= Time.deltaTime;
         }
     }
 
     //Создание астероида
+
+
+    public IEnumerator SpawnSpittle(Vector3 posSpawn)
+    {
+        Debug.Log("spittle");
+        if (createItemNow)
+            yield return new WaitForSeconds(.2f);
+        
+        Spittle newSpittle = Instantiate(spittlePrefab, posSpawn, Quaternion.identity);
+        newSpittle.spawnCon = GetComponent<SpawnController>();
+
+        allSpawnObjects.Add(newSpittle);
+
+        createItemNow = false;
+    }
+
     private IEnumerator CreateMeteorite()
     {
         if (createItemNow)

@@ -82,6 +82,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Получить X текущей линии, на которой стоит Player
+    public float ReturnXNowPlayerLine()
+    {
+        return FirstLanePos + (nowLaneNumber * LaneDistance);
+    }
+
     private void ChangeAnimation(string animationNow)
     {
         anim.SetTrigger(animationNow);
