@@ -851,12 +851,13 @@ MonoBehaviour:
   - {fileID: 1606222975}
   - {fileID: 123169029}
   - {fileID: 121904783}
-  itemsPerMinute: 45
-  starChance: {x: 0, y: 0.25}
-  meteoriteChance: {x: 0.25, y: 0.55}
-  shieldChance: {x: 0.55, y: 0.6}
-  balloonChance: {x: 0.6, y: 0.7}
-  anyChance: {x: 0.7, y: 0.75}
+  timeSpawnOnLine: 000000
+  itemsPerMinute: 100
+  starPercent: 30
+  meteoritePercent: 10
+  shieldPercent: 15
+  balloonPercent: 10
+  anyPercent: 10
 --- !u!1 &496175506
 GameObject:
   m_ObjectHideFlags: 0

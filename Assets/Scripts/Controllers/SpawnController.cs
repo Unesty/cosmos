@@ -54,55 +54,66 @@ public class SpawnController : MonoBehaviour
     //private float lifetime = 0;
     //public float spawnRateDiv = 1000;
 
-    public float itemsPerMinute = 100;
-    public Vector2 starChance;
-    public Vector2 meteoriteChance;
-    public Vector2 shieldChance;
-    public Vector2 balloonChance;
-    public Vector2 anyChance;
+    public float itemsPerMinute = 50;
+    public float starPercent = 25;
+    public float meteoritePercent = 30;
+    public float shieldPercent = 10;
+    public float balloonPercent = 10;
+    public float anyPercent = 10;
+    /*
+    private Vector2 starChance;
+    private Vector2 meteoriteChance;
+    private Vector2 shieldChance;
+    private Vector2 balloonChance;
+    private Vector2 anyChance;
+    */
 
     private void Awake()
     {
         allSpawnObjects = new List<Item>();
         //lifetime = 0;
+        timeStarWait = 60f/itemsPerMinute*(100f/starPercent);
+        timeMeteoriteWait = 60f/itemsPerMinute*(100f/starPercent);
+        timeShieldWait = 60f/itemsPerMinute*(100f/starPercent);
+        timeBalloonWait = 60f/itemsPerMinute*(100f/starPercent);
+        timeAnyWait = 60f/itemsPerMinute*(100f/starPercent);
     }
 
     private void Update()
     {
         if (!stopGame)
         {
-            /*
-            if (timeMeteoriteWait <= Random.Range(0f,lifetime/spawnRateDiv))
+            if (timeMeteoriteWait <= 0)
             {
-                timeMeteoriteWait = timeMeteoriteSpawn;
+                timeMeteoriteWait = 60f/itemsPerMinute*(100f/meteoritePercent);
 
                 StartCoroutine(CreateMeteorite());
             }
 
-            if (timeStarWait <= Random.Range(0f,lifetime/spawnRateDiv))
+            if (timeStarWait <= 0)
             {
-                timeStarWait = timeStarSpawn;
+                timeStarWait = 60f/itemsPerMinute*(100f/starPercent);
 
                 StartCoroutine(CreateStar());
             }
 
-            if (timeShieldWait <= Random.Range(0f,lifetime/spawnRateDiv))
+            if (timeShieldWait <= 0)
             {
-                timeShieldWait = timeShieldSpawn;
+                timeShieldWait = 60f/itemsPerMinute*(100f/shieldPercent);
 
                 StartCoroutine(CreateShield());
             }
 
-            if (timeBalloonWait <= Random.Range(0f,lifetime/spawnRateDiv))
+            if (timeBalloonWait <= 0)
             {
-                timeBalloonWait = timeBalloonSpawn;
+                timeBalloonWait = 60f/itemsPerMinute*(100f/balloonPercent);
 
                 StartCoroutine(CreateBalloon());
             }
 
-            if (timeAnyWait <= Random.Range(0f,1f))
+            if (timeAnyWait <= 0)
             {
-                timeAnyWait = timeAnySpawn;
+                timeAnyWait = 60f/itemsPerMinute*(100f/anyPercent);
                 int rnd = (int)Random.Range(0,4);
                 switch(rnd){
                 case 0:
@@ -115,13 +126,7 @@ public class SpawnController : MonoBehaviour
                     StartCoroutine(CreateShield());
                     break;
                 }
-
-            timeStarWait -= Time.deltaTime;
-            timeMeteoriteWait -= Time.deltaTime;
-            timeShieldWait -= Time.deltaTime;
-            timeAnyWait -= Time.deltaTime;
-            lifetime += Time.deltaTime;
-            */
+            }
             
             if(timeSpawnSpittleWait <= 0)
             {
@@ -129,22 +134,23 @@ public class SpawnController : MonoBehaviour
 
                 enemyCon.MoveEnemyToPlayer(playerCon.ReturnXNowPlayerLine());
             }
-            bool rndItem = Random.Range(0f,3600f/(float)itemsPerMinute)<1f;
-            if(rndItem){
-                float rnd=Random.Range(0f,1f);
-                if(rnd>starChance[0]&&rnd<starChance[1]){
+            /*
+            if(timeAnyWait<=0){
+                timeAnyWait = timeAnySpawn;
+                float rnd=Random.Range(0f,100f);
+                if(rnd>0&&rnd<starPercent){
                     StartCoroutine(CreateStar());
                 }
-                if(rnd>meteoriteChance[0]&&rnd<meteoriteChance[1]){
+                if(rnd>starPercent&&rnd<starPercent+meteoritePercent){
                     StartCoroutine(CreateMeteorite());
                 }
-                if(rnd>shieldChance[0]&&rnd<shieldChance[1]){
+                if(rnd>starPercent+meteoritePercent&&rnd<starPercent+meteoritePercent+shieldPercent){
                     StartCoroutine(CreateShield());
                 }
-                if(rnd>balloonChance[0]&&rnd<balloonChance[1]){
+                if(rnd>starPercent+meteoritePercent+shieldPercent&&rnd<starPercent+meteoritePercent+shieldPercent+balloonPercent){
                     StartCoroutine(CreateBalloon());
                 }
-                if(rnd>anyChance[0]&&rnd<anyChance[1]){
+                if(rnd>starPercent+meteoritePercent+shieldPercent+balloonPercent&&rnd<starPercent+meteoritePercent+shieldPercent+balloonPercent+anyPercent){
                     switch(Random.Range(0,4)){
                     case 0:
                         StartCoroutine(CreateMeteorite());
@@ -161,6 +167,13 @@ public class SpawnController : MonoBehaviour
                     }
                 }
             }
+            */
+            
+            timeStarWait -= Time.deltaTime;
+            timeMeteoriteWait -= Time.deltaTime;
+            timeShieldWait -= Time.deltaTime;
+            timeAnyWait -= Time.deltaTime;
+//            lifetime += Time.deltaTime;
             timeSpawnSpittleWait -= Time.deltaTime;
         }
     }
@@ -337,7 +350,7 @@ public class SpawnController : MonoBehaviour
     {
         timeSpawnOnLine[numberLine] = true;
 
-        yield return new WaitForSeconds(60f/(float)itemsPerMinute);
+        yield return new WaitForSeconds(30f/(float)itemsPerMinute);
 
         timeSpawnOnLine[numberLine] = false;
     }
